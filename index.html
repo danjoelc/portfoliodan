@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Cardenas — Operations Manager & Project Strategy Consultant</title>
+<meta name="description" content="Daniel Cardenas — Operations Manager & Project Strategy Consultant. 10+ years building scalable operational systems across Latin America. Google Certified PM. Based in Panama.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body { font-family:'Inter', system-ui, -apple-system, sans-serif; color:#1a1a2e; background:#fafafa; line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+
+/* ── i18n: JS-driven visibility ── */
+.i18n-hidden { display:none !important; }
+
+/* ── UTILITIES ── */
+.container { max-width:1080px; margin:0 auto; padding:0 24px; }
+
+/* ── NAVIGATION ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(250,250,250,.85); backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,.06); transition:box-shadow .3s; }
+nav.scrolled { box-shadow:0 1px 12px rgba(0,0,0,.08); }
+nav .container { display:flex; align-items:center; justify-content:space-between; height:60px; }
+nav .logo { font-weight:700; font-size:1.1rem; letter-spacing:-.02em; }
+nav .logo span { color:#2563eb; }
+nav .nav-right { display:flex; align-items:center; gap:8px; }
+nav ul { list-style:none; display:flex; gap:28px; align-items:center; }
+nav ul li a { font-size:.85rem; font-weight:500; color:#555; transition:color .2s; }
+nav ul li a:hover { color:#2563eb; }
+.nav-cta { background:#2563eb; color:#fff !important; padding:8px 20px; border-radius:8px; font-weight:600; font-size:.85rem; transition:background .2s, transform .15s; }
+.nav-cta:hover { background:#1d4ed8; transform:translateY(-1px); }
+
+/* language toggle */
+.lang-toggle { display:flex; background:#f1f5f9; border-radius:8px; overflow:hidden; border:1px solid #e2e8f0; margin-left:16px; }
+.lang-btn { padding:6px 14px; font-size:.78rem; font-weight:600; cursor:pointer; border:none; background:transparent; color:#64748b; transition:all .2s; letter-spacing:.02em; }
+.lang-btn.active { background:#2563eb; color:#fff; }
+.lang-btn:hover:not(.active) { background:#e2e8f0; }
+
+/* hamburger */
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+.hamburger span { width:22px; height:2px; background:#1a1a2e; border-radius:2px; transition:all .3s; }
+
+/* ── HERO ── */
+.hero { padding:140px 0 80px; background:linear-gradient(135deg, #f8faff 0%, #eef2ff 50%, #fafafa 100%); position:relative; overflow:hidden; }
+.hero::after { content:''; position:absolute; top:-200px; right:-200px; width:500px; height:500px; background:radial-gradient(circle, rgba(37,99,235,.06) 0%, transparent 70%); border-radius:50%; }
+.hero .container { position:relative; z-index:1; }
+.hero-grid { display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center; }
+.hero-text { max-width:620px; }
+.hero-label { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #e2e8f0; padding:6px 16px; border-radius:100px; font-size:.78rem; font-weight:600; color:#2563eb; margin-bottom:20px; letter-spacing:.03em; text-transform:uppercase; }
+.hero-label::before { content:''; width:8px; height:8px; background:#22c55e; border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.hero h1 { font-size:clamp(2.2rem, 5vw, 3.2rem); font-weight:800; line-height:1.12; letter-spacing:-.03em; color:#0f172a; margin-bottom:16px; }
+.hero h1 .accent { color:#2563eb; }
+.hero .subtitle { font-size:1.1rem; color:#475569; line-height:1.7; margin-bottom:32px; max-width:540px; }
+.hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:10px; font-weight:600; font-size:.9rem; transition:all .2s; cursor:pointer; border:none; }
+.btn-primary { background:#2563eb; color:#fff; box-shadow:0 4px 14px rgba(37,99,235,.3); }
+.btn-primary:hover { background:#1d4ed8; transform:translateY(-2px); box-shadow:0 6px 20px rgba(37,99,235,.35); }
+.btn-outline { background:transparent; color:#1a1a2e; border:2px solid #cbd5e1; }
+.btn-outline:hover { border-color:#2563eb; color:#2563eb; }
+
+.hero-stats { display:flex; gap:32px; margin-top:40px; }
+.stat { text-align:center; }
+.stat .number { font-size:1.8rem; font-weight:800; color:#0f172a; line-height:1; }
+.stat .number span { color:#2563eb; }
+.stat .label { font-size:.75rem; color:#64748b; margin-top:4px; font-weight:500; text-transform:uppercase; letter-spacing:.05em; }
+
+.hero-card { background:#fff; border-radius:20px; padding:36px; box-shadow:0 8px 40px rgba(0,0,0,.06); border:1px solid #e8ecf1; min-width:280px; }
+.hero-card h3 { font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; color:#94a3b8; margin-bottom:16px; font-weight:600; }
+.lang-item { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f1f5f9; }
+.lang-item:last-child { border:none; }
+.lang-name { font-weight:600; font-size:.9rem; }
+.lang-level { font-size:.78rem; color:#64748b; background:#f1f5f9; padding:3px 10px; border-radius:100px; }
+
+/* ── SECTIONS ── */
+section { padding:80px 0; }
+.section-label { display:inline-block; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#2563eb; margin-bottom:10px; }
+.section-title { font-size:clamp(1.6rem, 3vw, 2.2rem); font-weight:800; letter-spacing:-.02em; color:#0f172a; margin-bottom:12px; }
+.section-subtitle { font-size:1rem; color:#64748b; max-width:540px; margin-bottom:48px; }
+
+.about-section { background:#fff; }
+.value-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
+.value-card { background:#fafafa; border:1px solid #e8ecf1; border-radius:16px; padding:32px; transition:all .25s; }
+.value-card:hover { border-color:#2563eb; transform:translateY(-4px); box-shadow:0 12px 32px rgba(37,99,235,.08); }
+.value-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:16px; }
+.value-card h3 { font-size:1.05rem; font-weight:700; margin-bottom:8px; color:#0f172a; }
+.value-card p { font-size:.88rem; color:#64748b; line-height:1.6; }
+
+.exp-section { background:#fafafa; }
+.timeline { position:relative; padding-left:32px; }
+.timeline::before { content:''; position:absolute; left:7px; top:8px; bottom:8px; width:2px; background:linear-gradient(to bottom, #2563eb, #93c5fd, #dbeafe); }
+.timeline-item { position:relative; margin-bottom:40px; }
+.timeline-item:last-child { margin-bottom:0; }
+.timeline-dot { position:absolute; left:-32px; top:6px; width:16px; height:16px; border-radius:50%; background:#fff; border:3px solid #2563eb; z-index:1; }
+.timeline-item.current .timeline-dot { background:#2563eb; box-shadow:0 0 0 4px rgba(37,99,235,.2); }
+.timeline-header { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+.timeline-company { font-size:1.15rem; font-weight:700; color:#0f172a; }
+.timeline-badge { font-size:.7rem; font-weight:600; background:#dbeafe; color:#2563eb; padding:3px 10px; border-radius:100px; text-transform:uppercase; letter-spacing:.04em; }
+.timeline-role { font-size:.95rem; font-weight:600; color:#475569; margin-bottom:2px; }
+.timeline-meta { font-size:.8rem; color:#94a3b8; margin-bottom:10px; }
+.timeline-desc { font-size:.88rem; color:#64748b; line-height:1.65; margin-bottom:10px; }
+.timeline-highlights { list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.timeline-highlights li { font-size:.78rem; background:#f1f5f9; color:#475569; padding:4px 12px; border-radius:100px; font-weight:500; }
+
+.skills-section { background:#fff; }
+.skills-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:24px; }
+.skill-group { background:#fafafa; border:1px solid #e8ecf1; border-radius:16px; padding:28px; }
+.skill-group h3 { font-size:.9rem; font-weight:700; color:#0f172a; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+.skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.skill-tag { font-size:.82rem; background:#fff; border:1px solid #e2e8f0; padding:6px 14px; border-radius:8px; color:#334155; font-weight:500; transition:all .2s; }
+.skill-tag:hover { border-color:#2563eb; color:#2563eb; background:#eff6ff; }
+
+.edu-section { background:#fafafa; }
+.edu-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:24px; }
+.edu-card { background:#fff; border:1px solid #e8ecf1; border-radius:16px; padding:28px; transition:all .2s; }
+.edu-card:hover { border-color:#2563eb; box-shadow:0 8px 24px rgba(37,99,235,.06); }
+.edu-card .edu-type { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#2563eb; margin-bottom:8px; }
+.edu-card h3 { font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:4px; }
+.edu-card p { font-size:.85rem; color:#64748b; }
+
+.geo-section { background:#fff; }
+.geo-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px; }
+.geo-card { text-align:center; padding:24px 16px; background:#fafafa; border:1px solid #e8ecf1; border-radius:14px; transition:all .2s; }
+.geo-card:hover { border-color:#2563eb; transform:translateY(-2px); }
+.geo-flag { font-size:2rem; margin-bottom:8px; }
+.geo-card h4 { font-size:.88rem; font-weight:700; color:#0f172a; }
+.geo-card p { font-size:.78rem; color:#64748b; }
+
+.cta-section { background:linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color:#fff; text-align:center; padding:80px 0; }
+.cta-section .section-label { color:#60a5fa; }
+.cta-section .section-title { color:#fff; }
+.cta-section .section-subtitle { color:#94a3b8; margin-left:auto; margin-right:auto; margin-bottom:36px; }
+.cta-links { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+.cta-link { display:inline-flex; align-items:center; gap:10px; padding:16px 28px; border-radius:12px; font-weight:600; font-size:.92rem; transition:all .2s; }
+.cta-link.email { background:#2563eb; color:#fff; }
+.cta-link.email:hover { background:#3b82f6; transform:translateY(-2px); }
+.cta-link.linkedin { background:rgba(255,255,255,.1); color:#fff; border:1px solid rgba(255,255,255,.15); }
+.cta-link.linkedin:hover { background:rgba(255,255,255,.15); transform:translateY(-2px); }
+
+footer { background:#0f172a; color:#64748b; text-align:center; padding:24px 0; font-size:.8rem; border-top:1px solid rgba(255,255,255,.06); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav ul { display:none; position:absolute; top:60px; left:0; right:0; background:#fff; flex-direction:column; padding:20px 24px; gap:16px; border-bottom:1px solid #e8ecf1; box-shadow:0 8px 24px rgba(0,0,0,.08); }
+  nav ul.open { display:flex; }
+  .hamburger { display:flex; }
+  .hero-grid { grid-template-columns:1fr; gap:40px; }
+  .hero-card { display:none; }
+  .hero-stats { gap:20px; }
+  .value-grid { grid-template-columns:1fr; }
+  .skills-grid { grid-template-columns:1fr; }
+  .edu-grid { grid-template-columns:1fr; }
+  .hero { padding:120px 0 60px; }
+  .hero-actions { flex-direction:column; }
+  .btn { justify-content:center; }
+  .lang-toggle { margin-left:8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="logo">Daniel <span>Cardenas</span></a>
+    <div class="nav-right">
+      <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </div>
+      <ul>
+        <li data-lang="en"><a href="#about">About</a></li>
+        <li data-lang="es"><a href="#about">Acerca</a></li>
+        <li data-lang="en"><a href="#experience">Experience</a></li>
+        <li data-lang="es"><a href="#experience">Experiencia</a></li>
+        <li data-lang="en"><a href="#skills">Skills</a></li>
+        <li data-lang="es"><a href="#skills">Habilidades</a></li>
+        <li data-lang="en"><a href="#education">Education</a></li>
+        <li data-lang="es"><a href="#education">Formaci&oacute;n</a></li>
+        <li data-lang="en"><a href="#contact" class="nav-cta">Get in Touch</a></li>
+        <li data-lang="es"><a href="#contact" class="nav-cta">Contacto</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div data-lang="en">
+          <div class="hero-label">Available for Opportunities</div>
+          <h1>I build systems that let businesses <span class="accent">scale.</span></h1>
+          <p class="subtitle">Operations Manager & Project Strategy Consultant with 10+ years turning complex, multi-stakeholder environments into repeatable, high-performing operations across Latin America and international markets. Google Certified PM.</p>
+        </div>
+        <div data-lang="es">
+          <div class="hero-label">Disponible para Oportunidades</div>
+          <h1>Construyo sistemas que permiten a los negocios <span class="accent">escalar.</span></h1>
+          <p class="subtitle">Gerente de Operaciones y Consultor de Estrategia de Proyectos con m&aacute;s de 10 a&ntilde;os transformando entornos complejos en operaciones repetibles y de alto rendimiento en Am&eacute;rica Latina y mercados internacionales. PM Certificado por Google.</p>
+        </div>
+        <div class="hero-actions">
+          <a href="mailto:dancardenas.ops@gmail.com" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span data-lang="en">Contact Me</span><span data-lang="es">Cont&aacute;ctame</span>
+          </a>
+          <a href="https://www.linkedin.com/in/danjoelc" target="_blank" class="btn btn-outline">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="hero-stats" data-lang="en">
+          <div class="stat"><div class="number">10<span>+</span></div><div class="label">Years Exp.</div></div>
+          <div class="stat"><div class="number">6<span>+</span></div><div class="label">Countries</div></div>
+          <div class="stat"><div class="number">5</div><div class="label">Languages</div></div>
+        </div>
+        <div class="hero-stats" data-lang="es">
+          <div class="stat"><div class="number">10<span>+</span></div><div class="label">A&ntilde;os Exp.</div></div>
+          <div class="stat"><div class="number">6<span>+</span></div><div class="label">Pa&iacute;ses</div></div>
+          <div class="stat"><div class="number">5</div><div class="label">Idiomas</div></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3 data-lang="en">Languages</h3>
+        <h3 data-lang="es">Idiomas</h3>
+        <div class="lang-item"><span class="lang-name" data-lang="en">Spanish</span><span class="lang-name" data-lang="es">Espa&ntilde;ol</span><span class="lang-level" data-lang="en">Native</span><span class="lang-level" data-lang="es">Nativo</span></div>
+        <div class="lang-item"><span class="lang-name" data-lang="en">English</span><span class="lang-name" data-lang="es">Ingl&eacute;s</span><span class="lang-level" data-lang="en">Full Professional</span><span class="lang-level" data-lang="es">Profesional Pleno</span></div>
+        <div class="lang-item"><span class="lang-name" data-lang="en">Portuguese</span><span class="lang-name" data-lang="es">Portugu&eacute;s</span><span class="lang-level" data-lang="en">Professional</span><span class="lang-level" data-lang="es">Profesional</span></div>
+        <div class="lang-item"><span class="lang-name" data-lang="en">French</span><span class="lang-name" data-lang="es">Franc&eacute;s</span><span class="lang-level" data-lang="en">Professional</span><span class="lang-level" data-lang="es">Profesional</span></div>
+        <div class="lang-item"><span class="lang-name" data-lang="en">Italian</span><span class="lang-name" data-lang="es">Italiano</span><span class="lang-level" data-lang="en">Professional</span><span class="lang-level" data-lang="es">Profesional</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div data-lang="en">
+      <span class="section-label">What I Do</span>
+      <h2 class="section-title">I create structure in complex environments &mdash; fast.</h2>
+      <p class="section-subtitle">From family offices and vacation rentals to international R&D deployments and manufacturing PMOs, here's what I bring to the table.</p>
+    </div>
+    <div data-lang="es">
+      <span class="section-label">Lo Que Hago</span>
+      <h2 class="section-title">Creo estructura en entornos complejos &mdash; r&aacute;pido.</h2>
+      <p class="section-subtitle">Desde family offices y propiedades vacacionales hasta despliegues internacionales de I+D y PMOs de manufactura.</p>
+    </div>
+    <div class="value-grid" data-lang="en">
+      <div class="value-card">
+        <div class="value-icon" style="background:#eff6ff; color:#2563eb;">&#9881;</div>
+        <h3>Operations & Systems Design</h3>
+        <p>I design SOPs, build administrative systems, and create the operational infrastructure that lets organizations scale without losing control. Proven across aquaculture, hospitality, real estate, and manufacturing.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon" style="background:#f0fdf4; color:#16a34a;">&#9776;</div>
+        <h3>Project & PMO Leadership</h3>
+        <p>Google Certified PM. I implement project management systems (Jira, MS Project, Planner), translate strategy into tracked sprints, and keep cross-functional teams aligned across time zones and languages.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon" style="background:#fef3c7; color:#d97706;">&#127758;</div>
+        <h3>Multi-Jurisdictional Coordination</h3>
+        <p>Currently operating across Panama and Mexico simultaneously. Experienced managing vendor ecosystems, compliance, budgets, and logistics across Latin America, Aruba, Brazil, and the Caribbean.</p>
+      </div>
+    </div>
+    <div class="value-grid" data-lang="es">
+      <div class="value-card">
+        <div class="value-icon" style="background:#eff6ff; color:#2563eb;">&#9881;</div>
+        <h3>Operaciones y Dise&ntilde;o de Sistemas</h3>
+        <p>Dise&ntilde;o SOPs, construyo sistemas administrativos y creo la infraestructura operativa que permite a las organizaciones escalar sin perder control. Comprobado en acuicultura, hospitalidad, bienes ra&iacute;ces y manufactura.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon" style="background:#f0fdf4; color:#16a34a;">&#9776;</div>
+        <h3>Liderazgo de Proyectos y PMO</h3>
+        <p>PM Certificado por Google. Implemento sistemas de gesti&oacute;n de proyectos (Jira, MS Project, Planner), traduzco estrategia en sprints rastreables y mantengo equipos multifuncionales alineados.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon" style="background:#fef3c7; color:#d97706;">&#127758;</div>
+        <h3>Coordinaci&oacute;n Multi-Jurisdiccional</h3>
+        <p>Actualmente opero en Panam&aacute; y M&eacute;xico simult&aacute;neamente. Experiencia gestionando proveedores, cumplimiento, presupuestos y log&iacute;stica en Am&eacute;rica Latina, Arabia Saudita, Brasil y el Caribe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="container">
+    <div data-lang="en">
+      <span class="section-label">Career Path</span>
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">A decade-long trajectory from hands-on hospitality operations to international project strategy and multi-entity management.</p>
+    </div>
+    <div data-lang="es">
+      <span class="section-label">Trayectoria</span>
+      <h2 class="section-title">Experiencia</h2>
+      <p class="section-subtitle">M&aacute;s de una d&eacute;cada desde operaciones de hospitalidad hasta estrategia de proyectos internacionales y gesti&oacute;n multi-entidad.</p>
+    </div>
+
+    <!-- EN timeline -->
+    <div class="timeline" data-lang="en">
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header"><span class="timeline-company">Spongi & Transformaci&oacute;n Puebla</span><span class="timeline-badge">Current</span></div>
+        <div class="timeline-role">Project & Strategy Consultant</div>
+        <div class="timeline-meta">Jul 2025 &ndash; Present &middot; Mexico & Panama</div>
+        <p class="timeline-desc">Operations and Strategy Consultant for a multi-entity family office and property management portfolio in Panama. Concurrently serve as PMO and Strategy Consultant for a high-growth manufacturing entity in Mexico.</p>
+        <ul class="timeline-highlights"><li>SOPs & Admin Systems</li><li>Jira & MS Planner</li><li>Multi-entity Family Office</li><li>Vendor & Procurement</li><li>PMO Implementation</li><li>Cross-functional Remote Teams</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Innovasea</div>
+        <div class="timeline-role">R&D Operations and Technical Lead</div>
+        <div class="timeline-meta">Jan 2021 &ndash; Jan 2025 &middot; 4 years &middot; Panama</div>
+        <p class="timeline-desc">Managed operations, logistics, and on-site coordination for international R&D field deployments of oceanographic and aquaculture technology. Operational link between engineering, leadership, clients, and field teams across Latin America, Aruba, and Mexico.</p>
+        <ul class="timeline-highlights"><li>10+ Device Deployments</li><li>International 3PL & Import/Export</li><li>AI/ML Vision Systems</li><li>Budget & Financial Reporting</li><li>Client Liaison (Cuna del Mar)</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Open Blue Sea Farms</div>
+        <div class="timeline-role">Office Manager</div>
+        <div class="timeline-meta">Feb 2017 &ndash; Jan 2021 &middot; 4 years &middot; Panama</div>
+        <p class="timeline-desc">Grew from office management into leading complex operational projects and international logistics for a rapidly scaling commercial aquaculture entity. Developed SOPs for three regional offices and managed operational infrastructure supporting company growth.</p>
+        <ul class="timeline-highlights"><li>3 Regional Offices</li><li>3PL & Supply Chain</li><li>SOP Development</li><li>Compliance & Procurement</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">ClubVentos</div>
+        <div class="timeline-role">Operations Manager</div>
+        <div class="timeline-meta">Jun 2015 &ndash; Feb 2016 &middot; Jericoacoara, Brazil</div>
+        <p class="timeline-desc">Independently managed multi-departmental sports, retail, and hospitality operations at a premier kitesurfing destination, achieving a 15% increase in annual revenue through operational discipline and enhanced service quality.</p>
+        <ul class="timeline-highlights"><li>+15% Annual Revenue</li><li>Multi-dept Management</li><li>Import/Export Logistics</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Royal Caribbean International</div>
+        <div class="timeline-role">Culinary Operations Coordinator</div>
+        <div class="timeline-meta">Nov 2012 &ndash; Feb 2014 &middot; Oasis of the Seas</div>
+        <p class="timeline-desc">Managed the operational backbone of shipboard culinary services on one of the world's largest cruise ships. Coordinated 250+ culinary staff and served as cross-departmental liaison across Hotel Ops, HR, IT, F&B, and Finance.</p>
+        <ul class="timeline-highlights"><li>250+ Staff Coordination</li><li>Budget & Food Cost Tracking</li><li>GOLD Anchor Standards</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Earlier Career</div>
+        <div class="timeline-role">Culinary & Hospitality Leadership</div>
+        <div class="timeline-meta">2008 &ndash; 2012 &middot; Panama, Mexico, Switzerland, Miami</div>
+        <p class="timeline-desc">Built a strong operational foundation through progressive culinary and hospitality roles: Executive Chef at Wyndham Hotel Group (Panama), Executive Sous Chef at Casa del Horno, Guest Services at Westin Hotels, culinary management training at The Setai (Miami Beach), and culinary trainee at NH Hotel Geneva Airport (Switzerland).</p>
+        <ul class="timeline-highlights"><li>Executive Chef</li><li>The Setai, Miami</li><li>Westin Hotels</li><li>NH Hotel, Geneva</li></ul>
+      </div>
+    </div>
+
+    <!-- ES timeline -->
+    <div class="timeline" data-lang="es">
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header"><span class="timeline-company">Spongi & Transformaci&oacute;n Puebla</span><span class="timeline-badge">Actual</span></div>
+        <div class="timeline-role">Consultor de Proyecto y Estrategia</div>
+        <div class="timeline-meta">Jul 2025 &ndash; Presente &middot; M&eacute;xico y Panam&aacute;</div>
+        <p class="timeline-desc">Consultor de Operaciones y Estrategia para un portafolio multi-entidad de family office y gesti&oacute;n de propiedades en Panam&aacute;. Simult&aacute;neamente PMO y Consultor de Estrategia para una empresa manufacturera de alto crecimiento en M&eacute;xico.</p>
+        <ul class="timeline-highlights"><li>SOPs y Sistemas Admin</li><li>Jira & MS Planner</li><li>Family Office Multi-entidad</li><li>Proveedores y Compras</li><li>Implementaci&oacute;n PMO</li><li>Equipos Remotos</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Innovasea</div>
+        <div class="timeline-role">L&iacute;der de Operaciones y T&eacute;cnico de I+D</div>
+        <div class="timeline-meta">Ene 2021 &ndash; Ene 2025 &middot; 4 a&ntilde;os &middot; Panam&aacute;</div>
+        <p class="timeline-desc">Gestion&eacute; operaciones, log&iacute;stica y coordinaci&oacute;n en sitio para despliegues internacionales de I+D de tecnolog&iacute;a oceanogr&aacute;fica y acuicultura. Enlace operativo entre ingenier&iacute;a, liderazgo, clientes y equipos de campo en Am&eacute;rica Latina, Arabia Saudita y M&eacute;xico.</p>
+        <ul class="timeline-highlights"><li>10+ Despliegues</li><li>3PL Internacional</li><li>Sistemas AI/ML</li><li>Presupuestos y Reportes</li><li>Enlace con Clientes</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Open Blue Sea Farms</div>
+        <div class="timeline-role">Gerente de Oficina</div>
+        <div class="timeline-meta">Feb 2017 &ndash; Ene 2021 &middot; 4 a&ntilde;os &middot; Panam&aacute;</div>
+        <p class="timeline-desc">Crec&iacute; desde gesti&oacute;n de oficina hasta liderar proyectos operativos complejos y log&iacute;stica internacional para una empresa de acuicultura comercial en r&aacute;pido crecimiento. Desarroll&eacute; SOPs para tres oficinas regionales.</p>
+        <ul class="timeline-highlights"><li>3 Oficinas Regionales</li><li>3PL y Cadena de Suministro</li><li>Desarrollo de SOPs</li><li>Cumplimiento y Compras</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">ClubVentos</div>
+        <div class="timeline-role">Gerente de Operaciones</div>
+        <div class="timeline-meta">Jun 2015 &ndash; Feb 2016 &middot; Jericoacoara, Brasil</div>
+        <p class="timeline-desc">Gesti&oacute;n independiente de operaciones multi-departamentales de deportes, retail y hospitalidad en un destino premier de kitesurf, logrando un aumento del 15% en ingresos anuales.</p>
+        <ul class="timeline-highlights"><li>+15% Ingresos Anuales</li><li>Gesti&oacute;n Multi-depto</li><li>Log&iacute;stica Import/Export</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Royal Caribbean International</div>
+        <div class="timeline-role">Coordinador de Operaciones Culinarias</div>
+        <div class="timeline-meta">Nov 2012 &ndash; Feb 2014 &middot; Oasis of the Seas</div>
+        <p class="timeline-desc">Gestion&eacute; la columna vertebral operativa de servicios culinarios a bordo de uno de los cruceros m&aacute;s grandes del mundo. Coordin&eacute; 250+ personal culinario y fui enlace interdepartamental.</p>
+        <ul class="timeline-highlights"><li>250+ Personal</li><li>Presupuesto y Costos</li><li>Est&aacute;ndares GOLD Anchor</li></ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-company">Carrera Temprana</div>
+        <div class="timeline-role">Liderazgo Culinario y Hospitalidad</div>
+        <div class="timeline-meta">2008 &ndash; 2012 &middot; Panam&aacute;, M&eacute;xico, Suiza, Miami</div>
+        <p class="timeline-desc">Base operativa s&oacute;lida a trav&eacute;s de roles progresivos: Chef Ejecutivo en Wyndham Hotel Group (Panam&aacute;), Sous Chef Ejecutivo en Casa del Horno, Servicios al Hu&eacute;sped en Westin Hotels, formaci&oacute;n en The Setai (Miami Beach) y trainee culinario en NH Hotel Geneva Airport (Suiza).</p>
+        <ul class="timeline-highlights"><li>Chef Ejecutivo</li><li>The Setai, Miami</li><li>Westin Hotels</li><li>NH Hotel, Ginebra</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <div data-lang="en">
+      <span class="section-label">Toolkit</span>
+      <h2 class="section-title">Skills & Competencies</h2>
+      <p class="section-subtitle">The tools, systems, and capabilities I bring to every engagement.</p>
+    </div>
+    <div data-lang="es">
+      <span class="section-label">Herramientas</span>
+      <h2 class="section-title">Habilidades y Competencias</h2>
+      <p class="section-subtitle">Las herramientas, sistemas y capacidades que aporto a cada proyecto.</p>
+    </div>
+    <div class="skills-grid" data-lang="en">
+      <div class="skill-group"><h3>&#128736; Operations & Project Management</h3><div class="skill-tags"><span class="skill-tag">SOP Design & Implementation</span><span class="skill-tag">PMO Setup & Leadership</span><span class="skill-tag">Budget Management</span><span class="skill-tag">Vendor & Procurement</span><span class="skill-tag">3PL & Logistics</span><span class="skill-tag">Import/Export Compliance</span><span class="skill-tag">Cross-functional Coordination</span><span class="skill-tag">Multi-entity Administration</span></div></div>
+      <div class="skill-group"><h3>&#128187; Tools & Platforms</h3><div class="skill-tags"><span class="skill-tag">Jira</span><span class="skill-tag">Microsoft Planner</span><span class="skill-tag">MS Project</span><span class="skill-tag">SAP</span><span class="skill-tag">Microsoft 365</span><span class="skill-tag">Google Workspace</span><span class="skill-tag">SharePoint</span></div></div>
+      <div class="skill-group"><h3>&#127758; Industries</h3><div class="skill-tags"><span class="skill-tag">Aquaculture & Marine Tech</span><span class="skill-tag">Real Estate & Property Mgmt</span><span class="skill-tag">Manufacturing</span><span class="skill-tag">Hospitality & F&B</span><span class="skill-tag">Family Office</span><span class="skill-tag">R&D / Technology</span></div></div>
+      <div class="skill-group"><h3>&#127793; Core Strengths</h3><div class="skill-tags"><span class="skill-tag">Bilingual EN/ES</span><span class="skill-tag">5 Languages</span><span class="skill-tag">Remote Team Leadership</span><span class="skill-tag">Multi-jurisdictional Ops</span><span class="skill-tag">Stakeholder Management</span><span class="skill-tag">Financial Reporting</span><span class="skill-tag">Process Optimization</span></div></div>
+    </div>
+    <div class="skills-grid" data-lang="es">
+      <div class="skill-group"><h3>&#128736; Operaciones y Gesti&oacute;n de Proyectos</h3><div class="skill-tags"><span class="skill-tag">Dise&ntilde;o e Implementaci&oacute;n de SOPs</span><span class="skill-tag">Setup y Liderazgo PMO</span><span class="skill-tag">Gesti&oacute;n de Presupuestos</span><span class="skill-tag">Proveedores y Compras</span><span class="skill-tag">3PL y Log&iacute;stica</span><span class="skill-tag">Cumplimiento Import/Export</span><span class="skill-tag">Coordinaci&oacute;n Multifuncional</span><span class="skill-tag">Administraci&oacute;n Multi-entidad</span></div></div>
+      <div class="skill-group"><h3>&#128187; Herramientas y Plataformas</h3><div class="skill-tags"><span class="skill-tag">Jira</span><span class="skill-tag">Microsoft Planner</span><span class="skill-tag">MS Project</span><span class="skill-tag">SAP</span><span class="skill-tag">Microsoft 365</span><span class="skill-tag">Google Workspace</span><span class="skill-tag">SharePoint</span></div></div>
+      <div class="skill-group"><h3>&#127758; Industrias</h3><div class="skill-tags"><span class="skill-tag">Acuicultura y Tech Marina</span><span class="skill-tag">Bienes Ra&iacute;ces y Propiedades</span><span class="skill-tag">Manufactura</span><span class="skill-tag">Hospitalidad y A&B</span><span class="skill-tag">Family Office</span><span class="skill-tag">I+D / Tecnolog&iacute;a</span></div></div>
+      <div class="skill-group"><h3>&#127793; Fortalezas Clave</h3><div class="skill-tags"><span class="skill-tag">Biling&uuml;e EN/ES</span><span class="skill-tag">5 Idiomas</span><span class="skill-tag">Liderazgo Remoto</span><span class="skill-tag">Ops Multi-jurisdiccional</span><span class="skill-tag">Gesti&oacute;n de Stakeholders</span><span class="skill-tag">Reportes Financieros</span><span class="skill-tag">Optimizaci&oacute;n de Procesos</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-section" id="education">
+  <div class="container">
+    <div data-lang="en"><span class="section-label">Credentials</span><h2 class="section-title">Education & Certifications</h2><p class="section-subtitle"></p></div>
+    <div data-lang="es"><span class="section-label">Credenciales</span><h2 class="section-title">Formaci&oacute;n y Certificaciones</h2><p class="section-subtitle"></p></div>
+    <div class="edu-grid" data-lang="en">
+      <div class="edu-card"><div class="edu-type">Education</div><h3>Cesar Ritz Colleges, Switzerland</h3><p>Swiss Higher Diploma &mdash; Culinary Arts & Restaurant Management (2007 &ndash; 2010)</p></div>
+      <div class="edu-card"><div class="edu-type">Certification</div><h3>Google Project Management Certificate</h3><p>Foundations of Project Management &mdash; Google Certified</p></div>
+      <div class="edu-card"><div class="edu-type">Certification</div><h3>EF SET English Certificate</h3><p>Score 69/100 &mdash; C1 Advanced Level</p></div>
+      <div class="edu-card"><div class="edu-type">Location</div><h3>Based in Panama City, Panama</h3><p>Available for remote roles or Panama-based positions. Open to travel across Latin America.</p></div>
+    </div>
+    <div class="edu-grid" data-lang="es">
+      <div class="edu-card"><div class="edu-type">Educaci&oacute;n</div><h3>Cesar Ritz Colleges, Suiza</h3><p>Diploma Superior Suizo &mdash; Artes Culinarias y Gesti&oacute;n de Restaurantes (2007 &ndash; 2010)</p></div>
+      <div class="edu-card"><div class="edu-type">Certificaci&oacute;n</div><h3>Certificado Google en Gesti&oacute;n de Proyectos</h3><p>Fundamentos de Gesti&oacute;n de Proyectos &mdash; Certificado por Google</p></div>
+      <div class="edu-card"><div class="edu-type">Certificaci&oacute;n</div><h3>Certificado EF SET de Ingl&eacute;s</h3><p>Puntuaci&oacute;n 69/100 &mdash; Nivel C1 Avanzado</p></div>
+      <div class="edu-card"><div class="edu-type">Ubicaci&oacute;n</div><h3>Basado en Ciudad de Panam&aacute;</h3><p>Disponible para roles remotos o presenciales en Panam&aacute;. Abierto a viajes por Am&eacute;rica Latina.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GEOGRAPHY -->
+<section class="geo-section">
+  <div class="container">
+    <div data-lang="en"><span class="section-label">Global Footprint</span><h2 class="section-title">Where I've Operated</h2><p class="section-subtitle">Hands-on experience building and managing operations across these markets.</p></div>
+    <div data-lang="es"><span class="section-label">Huella Global</span><h2 class="section-title">D&oacute;nde He Operado</h2><p class="section-subtitle">Experiencia pr&aacute;ctica construyendo y gestionando operaciones en estos mercados.</p></div>
+    <div class="geo-grid" data-lang="en">
+      <div class="geo-card"><div class="geo-flag">&#127477;&#127462;</div><h4>Panama</h4><p>Home base</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127474;&#127485;</div><h4>Mexico</h4><p>PMO & Manufacturing</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127463;&#127479;</div><h4>Brazil</h4><p>Hospitality Ops</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127462;&#127484;</div><h4>Aruba</h4><p>R&D Deployments</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127464;&#127469;</div><h4>Switzerland</h4><p>Education</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127482;&#127480;</div><h4>USA</h4><p>Culinary Training</p></div>
+    </div>
+    <div class="geo-grid" data-lang="es">
+      <div class="geo-card"><div class="geo-flag">&#127477;&#127462;</div><h4>Panam&aacute;</h4><p>Base</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127474;&#127485;</div><h4>M&eacute;xico</h4><p>PMO y Manufactura</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127463;&#127479;</div><h4>Brasil</h4><p>Ops de Hospitalidad</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127480;&#127462;</div><h4>Arabia Saudita</h4><p>Despliegues I+D</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127464;&#127469;</div><h4>Suiza</h4><p>Formaci&oacute;n</p></div>
+      <div class="geo-card"><div class="geo-flag">&#127482;&#127480;</div><h4>EE.UU.</h4><p>Formaci&oacute;n Culinaria</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div data-lang="en">
+      <span class="section-label">Let's Connect</span>
+      <h2 class="section-title">Looking for someone who can build<br>your operations from the ground up?</h2>
+      <p class="section-subtitle">I'm targeting Operations Manager and Project Coordinator roles &mdash; remote or Panama-based &mdash; where I can bring structure to complex environments and grow into senior operations leadership.</p>
+    </div>
+    <div data-lang="es">
+      <span class="section-label">Conect&eacute;monos</span>
+      <h2 class="section-title">&iquest;Buscas a alguien que construya<br>tus operaciones desde cero?</h2>
+      <p class="section-subtitle">Busco roles de Gerente de Operaciones y Coordinador de Proyectos &mdash; remoto o en Panam&aacute; &mdash; donde pueda aportar estructura a entornos complejos y crecer hacia liderazgo senior de operaciones.</p>
+    </div>
+    <div class="cta-links">
+      <a href="mailto:dancardenas.ops@gmail.com" class="cta-link email">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        dancardenas.ops@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/danjoelc" target="_blank" class="cta-link linkedin">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span data-lang="en">LinkedIn Profile</span><span data-lang="es">Perfil de LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container"><p>&copy; 2026 Daniel Cardenas.</p></div></footer>
+
+<script>
+function setLang(lang) {
+  var other = lang === 'es' ? 'en' : 'es';
+  document.querySelectorAll('[data-lang="' + other + '"]').forEach(function(el) { el.classList.add('i18n-hidden'); });
+  document.querySelectorAll('[data-lang="' + lang + '"]').forEach(function(el) { el.classList.remove('i18n-hidden'); });
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.toggle('active', b.textContent === lang.toUpperCase()); });
+  document.documentElement.lang = lang;
+}
+// Initialize: hide ES, show EN
+setLang('en');
+
+window.addEventListener('scroll', function() { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+document.querySelectorAll('nav ul li a').forEach(function(a) { a.addEventListener('click', function() { document.querySelector('nav ul').classList.remove('open'); }); });
+var observer = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if(e.isIntersecting) { e.target.style.opacity=1; e.target.style.transform='translateY(0)'; }}); }, { threshold:0.1 });
+document.querySelectorAll('.value-card, .timeline-item, .skill-group, .edu-card, .geo-card').forEach(function(el) { el.style.opacity=0; el.style.transform='translateY(20px)'; el.style.transition='opacity .5s, transform .5s'; observer.observe(el); });
+</script>
+</body>
+</html>
